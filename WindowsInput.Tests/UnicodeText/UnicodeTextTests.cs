@@ -31,7 +31,7 @@ namespace WindowsInput.Tests.UnicodeText
 
         [Test]
         [Explicit]
-        [TestCaseSource("UnicodeTestCases")]
+        [TestCaseSource(nameof(UnicodeTestCases))]
         public void TestUnicodeRanges(UnicodeRange range)
         {
             // ReSharper disable AccessToDisposedClosure

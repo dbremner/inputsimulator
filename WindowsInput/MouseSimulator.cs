@@ -24,7 +24,7 @@ namespace WindowsInput
         /// <param name="inputSimulator">The <see cref="IInputSimulator"/> that owns this instance.</param>
         public MouseSimulator(IInputSimulator inputSimulator)
         {
-            if (inputSimulator == null) throw new ArgumentNullException("inputSimulator");
+            if (inputSimulator == null) throw new ArgumentNullException(nameof(inputSimulator));
 
             _inputSimulator = inputSimulator;
             _messageDispatcher = new WindowsInputMessageDispatcher();
@@ -39,7 +39,7 @@ namespace WindowsInput
         internal MouseSimulator(IInputSimulator inputSimulator, IInputMessageDispatcher messageDispatcher)
         {
             if (inputSimulator == null)
-                throw new ArgumentNullException("inputSimulator");
+                throw new ArgumentNullException(nameof(inputSimulator));
 
             if (messageDispatcher == null)
                 throw new InvalidOperationException(

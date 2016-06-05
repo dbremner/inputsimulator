@@ -23,7 +23,7 @@ namespace WindowsInput
         /// <param name="inputSimulator">The <see cref="IInputSimulator"/> that owns this instance.</param>
         public KeyboardSimulator(IInputSimulator inputSimulator)
         {
-            if (inputSimulator == null) throw new ArgumentNullException("inputSimulator");
+            if (inputSimulator == null) throw new ArgumentNullException(nameof(inputSimulator));
 
             _inputSimulator = inputSimulator;
             _messageDispatcher = new WindowsInputMessageDispatcher();
@@ -37,7 +37,7 @@ namespace WindowsInput
         /// <exception cref="InvalidOperationException">If null is passed as the <paramref name="messageDispatcher"/>.</exception>
         internal KeyboardSimulator(IInputSimulator inputSimulator, IInputMessageDispatcher messageDispatcher)
         {
-            if (inputSimulator == null) throw new ArgumentNullException("inputSimulator");
+            if (inputSimulator == null) throw new ArgumentNullException(nameof(inputSimulator));
 
             if (messageDispatcher == null)
                 throw new InvalidOperationException(
@@ -188,7 +188,7 @@ namespace WindowsInput
         /// <param name="text">The text to be simulated.</param>
         public IKeyboardSimulator TextEntry(string text)
         {
-            if (text.Length > UInt32.MaxValue / 2) throw new ArgumentException(string.Format("The text parameter is too long. It must be less than {0} characters.", UInt32.MaxValue / 2), "text");
+            if (text.Length > UInt32.MaxValue / 2) throw new ArgumentException(string.Format("The text parameter is too long. It must be less than {0} characters.", UInt32.MaxValue / 2), nameof(text));
             var inputList = new InputBuilder().AddCharacters(text).ToArray();
             SendSimulatedInput(inputList);
             return this;
