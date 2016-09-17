@@ -45,7 +45,7 @@ namespace WindowsInput
         /// </summary>
         /// <param name="modifierKeyCodes">The list of <see cref="VirtualKeyCode"/>s for the modifier keys.</param>
         /// <param name="keyCodes">The list of <see cref="VirtualKeyCode"/>s for the keys to simulate.</param>
-        IKeyboardSimulator ModifiedKeyStroke(IEnumerable<VirtualKeyCode> modifierKeyCodes, IEnumerable<VirtualKeyCode> keyCodes);
+        IKeyboardSimulator ModifiedKeyStroke(IReadOnlyList<VirtualKeyCode> modifierKeyCodes, IReadOnlyList<VirtualKeyCode> keyCodes);
 
         /// <summary>
         /// Simulates a modified keystroke where there are multiple modifiers and one key like CTRL-ALT-C where CTRL and ALT are the modifierKeys and C is the key.
@@ -53,7 +53,7 @@ namespace WindowsInput
         /// </summary>
         /// <param name="modifierKeyCodes">The list of <see cref="VirtualKeyCode"/>s for the modifier keys.</param>
         /// <param name="keyCode">The <see cref="VirtualKeyCode"/> for the key.</param>
-        IKeyboardSimulator ModifiedKeyStroke(IEnumerable<VirtualKeyCode> modifierKeyCodes, VirtualKeyCode keyCode);
+        IKeyboardSimulator ModifiedKeyStroke(IReadOnlyList<VirtualKeyCode> modifierKeyCodes, VirtualKeyCode keyCode);
 
         /// <summary>
         /// Simulates a modified keystroke where there is one modifier and multiple keys like CTRL-K-C where CTRL is the modifierKey and K and C are the keys.
@@ -61,7 +61,7 @@ namespace WindowsInput
         /// </summary>
         /// <param name="modifierKey">The <see cref="VirtualKeyCode"/> for the modifier key.</param>
         /// <param name="keyCodes">The list of <see cref="VirtualKeyCode"/>s for the keys to simulate.</param>
-        IKeyboardSimulator ModifiedKeyStroke(VirtualKeyCode modifierKey, IEnumerable<VirtualKeyCode> keyCodes);
+        IKeyboardSimulator ModifiedKeyStroke(VirtualKeyCode modifierKey, IReadOnlyList<VirtualKeyCode> keyCodes);
 
         /// <summary>
         /// Simulates a simple modified keystroke like CTRL-C where CTRL is the modifierKey and C is the key.

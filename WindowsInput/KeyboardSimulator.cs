@@ -51,13 +51,13 @@ namespace WindowsInput
         /// <value>The <see cref="IMouseSimulator"/> instance.</value>
         public IMouseSimulator Mouse { get { return _inputSimulator.Mouse; } }
 
-        private void ModifiersDown(InputBuilder builder, IEnumerable<VirtualKeyCode> modifierKeyCodes)
+        private void ModifiersDown(InputBuilder builder, IReadOnlyList<VirtualKeyCode> modifierKeyCodes)
         {
             if (modifierKeyCodes == null) return;
             foreach (var key in modifierKeyCodes) builder.AddKeyDown(key);
         }
 
-        private void ModifiersUp(InputBuilder builder, IEnumerable<VirtualKeyCode> modifierKeyCodes)
+        private void ModifiersUp(InputBuilder builder, IReadOnlyList<VirtualKeyCode> modifierKeyCodes)
         {
             if (modifierKeyCodes == null) return;
 
@@ -66,7 +66,7 @@ namespace WindowsInput
             while (stack.Count > 0) builder.AddKeyUp(stack.Pop());
         }
 
-        private void KeysPress(InputBuilder builder, IEnumerable<VirtualKeyCode> keyCodes)
+        private void KeysPress(InputBuilder builder, IReadOnlyList<VirtualKeyCode> keyCodes)
         {
             if (keyCodes == null) return;
             foreach (var key in keyCodes) builder.AddKeyPress(key);
@@ -144,7 +144,7 @@ namespace WindowsInput
         /// </summary>
         /// <param name="modifierKeyCodes">The list of modifier keys</param>
         /// <param name="keyCode">The key to simulate</param>
-        public IKeyboardSimulator ModifiedKeyStroke(IEnumerable<VirtualKeyCode> modifierKeyCodes, VirtualKeyCode keyCode)
+        public IKeyboardSimulator ModifiedKeyStroke(IReadOnlyList<VirtualKeyCode> modifierKeyCodes, VirtualKeyCode keyCode)
         {
             ModifiedKeyStroke(modifierKeyCodes, new[] {keyCode});
             return this;
@@ -156,7 +156,7 @@ namespace WindowsInput
         /// </summary>
         /// <param name="modifierKey">The modifier key</param>
         /// <param name="keyCodes">The list of keys to simulate</param>
-        public IKeyboardSimulator ModifiedKeyStroke(VirtualKeyCode modifierKey, IEnumerable<VirtualKeyCode> keyCodes)
+        public IKeyboardSimulator ModifiedKeyStroke(VirtualKeyCode modifierKey, IReadOnlyList<VirtualKeyCode> keyCodes)
         {
             ModifiedKeyStroke(new [] {modifierKey}, keyCodes);
             return this;
@@ -168,7 +168,7 @@ namespace WindowsInput
         /// </summary>
         /// <param name="modifierKeyCodes">The list of modifier keys</param>
         /// <param name="keyCodes">The list of keys to simulate</param>
-        public IKeyboardSimulator ModifiedKeyStroke(IEnumerable<VirtualKeyCode> modifierKeyCodes, IEnumerable<VirtualKeyCode> keyCodes)
+        public IKeyboardSimulator ModifiedKeyStroke(IReadOnlyList<VirtualKeyCode> modifierKeyCodes, IReadOnlyList<VirtualKeyCode> keyCodes)
         {
             var builder = new InputBuilder();
             ModifiersDown(builder, modifierKeyCodes);
