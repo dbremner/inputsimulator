@@ -22,11 +22,8 @@ namespace WindowsInput
         /// </summary>
         /// <param name="inputSimulator">The <see cref="IInputSimulator"/> that owns this instance.</param>
         public KeyboardSimulator(IInputSimulator inputSimulator)
+            : this(inputSimulator, new WindowsInputMessageDispatcher())
         {
-            if (inputSimulator == null) throw new ArgumentNullException(nameof(inputSimulator));
-
-            _inputSimulator = inputSimulator;
-            _messageDispatcher = new WindowsInputMessageDispatcher();
         }
 
         /// <summary>
