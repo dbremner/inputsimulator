@@ -21,12 +21,28 @@ namespace WindowsInput.Native
         /// <see cref="InputType.Keyboard"/> - The event is a keyboard event. Use the ki structure of the union.
         /// <see cref="InputType.Hardware"/> - Windows 95/98/Me: The event is from input hardware other than a keyboard or mouse. Use the hi structure of the union.
         /// </summary>
-        public UInt32 Type;
+        public readonly UInt32 Type;
 
         /// <summary>
         /// The data structure that contains information about the simulated Mouse, Keyboard or Hardware event.
         /// </summary>
-        public MOUSEKEYBDHARDWAREINPUT Data;
+        public readonly MOUSEKEYBDHARDWAREINPUT Data;
+
+        public INPUT(KEYBDINPUT keybdinput)
+        {
+            Type = (UInt32)InputType.Keyboard;
+            Data.Hardware = new HARDWAREINPUT();
+            Data.Mouse = new MOUSEINPUT();
+            Data.Keyboard = keybdinput;
+        }
+
+        public INPUT(MOUSEINPUT mouseinput)
+        {
+            Type = (UInt32)InputType.Mouse;
+            Data.Hardware = new HARDWAREINPUT();
+            Data.Keyboard = new KEYBDINPUT();
+            Data.Mouse = mouseinput;
+        }
     }
 #pragma warning restore 649
 }

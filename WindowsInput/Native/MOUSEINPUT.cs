@@ -22,12 +22,12 @@ namespace WindowsInput.Native
         /// <summary>
         /// Specifies the absolute position of the mouse, or the amount of motion since the last mouse event was generated, depending on the value of the dwFlags member. Absolute data is specified as the x coordinate of the mouse; relative data is specified as the number of pixels moved. 
         /// </summary>
-        public Int32 X;
+        public readonly Int32 X;
 
         /// <summary>
         /// Specifies the absolute position of the mouse, or the amount of motion since the last mouse event was generated, depending on the value of the dwFlags member. Absolute data is specified as the y coordinate of the mouse; relative data is specified as the number of pixels moved. 
         /// </summary>
-        public Int32 Y;
+        public readonly Int32 Y;
 
         /// <summary>
         /// If dwFlags contains MOUSEEVENTF_WHEEL, then mouseData specifies the amount of wheel movement. A positive value indicates that the wheel was rotated forward, away from the user; a negative value indicates that the wheel was rotated backward, toward the user. One wheel click is defined as WHEEL_DELTA, which is 120. 
@@ -35,24 +35,49 @@ namespace WindowsInput.Native
         /// Windows 2000/XP: IfdwFlags does not contain MOUSEEVENTF_WHEEL, MOUSEEVENTF_XDOWN, or MOUSEEVENTF_XUP, then mouseData should be zero. 
         /// If dwFlags contains MOUSEEVENTF_XDOWN or MOUSEEVENTF_XUP, then mouseData specifies which X buttons were pressed or released. This value may be any combination of the following flags. 
         /// </summary>
-        public UInt32 MouseData;
+        public readonly UInt32 MouseData;
 
         /// <summary>
         /// A set of bit flags that specify various aspects of mouse motion and button clicks. The bits in this member can be any reasonable combination of the following values. 
         /// The bit flags that specify mouse button status are set to indicate changes in status, not ongoing conditions. For example, if the left mouse button is pressed and held down, MOUSEEVENTF_LEFTDOWN is set when the left button is first pressed, but not for subsequent motions. Similarly, MOUSEEVENTF_LEFTUP is set only when the button is first released. 
         /// You cannot specify both the MOUSEEVENTF_WHEEL flag and either MOUSEEVENTF_XDOWN or MOUSEEVENTF_XUP flags simultaneously in the dwFlags parameter, because they both require use of the mouseData field. 
         /// </summary>
-        public UInt32 Flags;
+        public readonly UInt32 Flags;
 
         /// <summary>
         /// Time stamp for the event, in milliseconds. If this parameter is 0, the system will provide its own time stamp. 
         /// </summary>
-        public UInt32 Time;
+        public readonly UInt32 Time;
 
         /// <summary>
         /// Specifies an additional value associated with the mouse event. An application calls GetMessageExtraInfo to obtain this extra information. 
         /// </summary>
-        public IntPtr ExtraInfo;
+        public readonly IntPtr ExtraInfo;
+
+        public MOUSEINPUT(Int32 x, Int32 y, UInt32 mouseData, UInt32 flags)
+        {
+            X = x;
+            Y = y;
+            MouseData = mouseData;
+            Flags = flags;
+            Time = 0;
+            ExtraInfo = IntPtr.Zero;
+        }
+
+        public MOUSEINPUT(UInt32 flags, UInt32 mouseData) :
+            this(x: 0, y: 0, mouseData: mouseData, flags: flags)
+        {
+        }
+
+        public MOUSEINPUT(UInt32 flags) :
+            this(x: 0, y: 0, mouseData: 0, flags: flags)
+        {
+        }
+
+        public MOUSEINPUT(UInt32 flags, Int32 x, Int32 y) :
+            this(x: x, y: y, mouseData: 0, flags: flags)
+        {
+        }
     }
 #pragma warning restore 649
 }
