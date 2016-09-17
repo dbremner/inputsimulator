@@ -13,7 +13,7 @@ namespace WindowsInput.Tests
             var builder = new InputBuilder();
             Assert.That(builder.ToArray(), Is.Empty);
             builder.AddKeyDown(VirtualKeyCode.VK_A);
-            Assert.That(builder.Count(), Is.EqualTo(1));
+            Assert.That(builder.Count, Is.EqualTo(1));
             Assert.That(builder[0].Type, Is.EqualTo((uint)InputType.Keyboard));
             Assert.That(builder[0].Data.Keyboard.KeyCode, Is.EqualTo((ushort)VirtualKeyCode.VK_A));
         }

@@ -8,7 +8,7 @@ namespace WindowsInput
     /// <summary>
     /// A helper class for building a list of <see cref="INPUT"/> messages ready to be sent to the native Windows API.
     /// </summary>
-    internal class InputBuilder : IEnumerable<INPUT>
+    internal class InputBuilder : IReadOnlyList<INPUT>
     {
         /// <summary>
         /// The public list of <see cref="INPUT"/> messages being built by this instance.
@@ -481,6 +481,13 @@ namespace WindowsInput
                 default:
                     return MouseFlag.LeftUp;
             }
+        }
+
+        /// <summary>Gets the number of <see cref="INPUT"/> structs in the collection.</summary>
+        /// <returns>The number of <see cref="INPUT"/> structs in the collection. </returns>
+        public int Count
+        {
+            get { return _inputList.Count; }
         }
     }
 }
