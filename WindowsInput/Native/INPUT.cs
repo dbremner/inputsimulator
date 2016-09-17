@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace WindowsInput.Native
 {
@@ -11,6 +12,7 @@ namespace WindowsInput.Native
     /// This structure contains information identical to that used in the parameter list of the keybd_event or mouse_event function.
     /// Windows 2000/XP: INPUT_KEYBOARD supports nonkeyboard input methods, such as handwriting recognition or voice recognition, as if it were text input by using the KEYEVENTF_UNICODE flag. For more information, see the remarks section of KEYBDINPUT.
     /// </remarks>
+    [StructLayout(LayoutKind.Sequential)]
     internal struct INPUT
     {
         /// <summary>
