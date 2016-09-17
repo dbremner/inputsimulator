@@ -253,16 +253,6 @@ namespace WindowsInput
         }
 
         /// <summary>
-        /// Adds the characters in the specified <see cref="string"/>.
-        /// </summary>
-        /// <param name="characters">The string of <see cref="char"/> to add.</param>
-        /// <returns>This <see cref="InputBuilder"/> instance.</returns>
-        public InputBuilder AddCharacters(string characters)
-        {
-            return AddCharacters(characters.ToCharArray());
-        }
-
-        /// <summary>
         /// Moves the mouse relative to its current position.
         /// </summary>
         /// <param name="x"></param>
