@@ -61,9 +61,13 @@ namespace WindowsInput
         {
             if (modifierKeyCodes == null) return;
 
-            // Key up in reverse (I miss LINQ)
-            var stack = new Stack<VirtualKeyCode>(modifierKeyCodes);
-            while (stack.Count > 0) builder.AddKeyUp(stack.Pop());
+            var rev = new List<VirtualKeyCode>(modifierKeyCodes.Count);
+            rev.AddRange(modifierKeyCodes);
+            rev.Reverse();
+            foreach (var key in rev)
+            {
+                builder.AddKeyUp(key);
+            }
         }
 
         private void KeysPress(InputBuilder builder, IReadOnlyList<VirtualKeyCode> keyCodes)
